@@ -11,7 +11,18 @@ configure_args=(
     --with-cairo
 )
 
-if [ -n "$OSX_ARCH" ] ; then
+if [ $PY3K = 1 ] ; then
+    # Work around a weakness in AM_CHECK_PYTHON_HEADERS. It finds the name of
+    # $PYTHON, then runs "$PYTHON-config" to get the header locations. On
+    # Unixy platforms, conda-build sets $PYTHON to "$PREFIX/bin/python", so
+    # the configure script adopts that value. But in Python 3 situations,
+    # Anaconda does not "$PREFIX/bin/python-config", so the header check
+    # fails. Anaconda does provide "python3-config", though, so if we just
+    # tweak the executable name, we work.
+    configure_args+=(--with-python=python3)
+fi
+
+if [ $(uname) = Darwin ] ; then
     LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
 fi
 

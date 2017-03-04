@@ -1,8 +1,8 @@
 {% set name = "gobject-introspection" %}
 {% set major = "1.51" %}
-{% set patch = "1" %}
+{% set patch = "3" %}
 {% set version = major ~ "." ~ patch %}
-{% set sha256 = "2c47e7632df936055b4e96f48315e2d392be10a0642ce11610fba5240e19772d" %}
+{% set sha256 = "80acbffd89452b8e30f8a50f46d64517a866ca63157bd1fa78bedb69f9de11c3" %}
 
 package:
   name: {{ name|lower }}
@@ -18,7 +18,7 @@ source:
 build:
   number: 0
   detect_binary_files_with_prefix: true
-  skip: true  # [win or not py27]
+  skip: true  # [win]
 
 requirements:
   build:
@@ -29,11 +29,12 @@ requirements:
     - glib 2.51.*
     - libffi 3.2.*
     - pkg-config  # [not win]
-    - python >=2.7,<3
+    - python
     - toolchain
   run:
     - glib 2.51.*
     - libffi 3.2.*
+    - python
 
 test:
   commands:
