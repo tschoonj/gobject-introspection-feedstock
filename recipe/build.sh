@@ -12,13 +12,14 @@ configure_args=(
 )
 
 if [ $PY3K = 1 ] ; then
-    # Work around a weakness in AM_CHECK_PYTHON_HEADERS. It finds the name of
-    # $PYTHON, then runs "$PYTHON-config" to get the header locations. On
-    # Unixy platforms, conda-build sets $PYTHON to "$PREFIX/bin/python", so
-    # the configure script adopts that value. But in Python 3 situations,
-    # Anaconda does not "$PREFIX/bin/python-config", so the header check
-    # fails. Anaconda does provide "python3-config", though, so if we just
-    # tweak the executable name, we work.
+    # Work around a weakness in AM_CHECK_PYTHON_HEADERS. It finds the Python
+    # interpreter and calls it $PYTHON, then runs "$PYTHON-config --includes"
+    # to get the needed C #include flags. On Unixy platforms, conda-build sets
+    # $PYTHON to "$PREFIX/bin/python", so the configure script adopts that
+    # value. But in Python 3 situations, Anaconda does not provide
+    # "$PREFIX/bin/python-config", so configure fails to figure out where the
+    # headers live. Anaconda does provide "python3-config", though, so if we
+    # just tweak the executable name, things work.
     configure_args+=(--with-python=python3)
 fi
 
