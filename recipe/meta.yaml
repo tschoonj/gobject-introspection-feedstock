@@ -21,18 +21,19 @@ build:
 
 requirements:
   build:
+    - pkg-config  # [not win]
+    - {{ compiler('c') }}
+  host:
     - bison
-    - cairo 1.14.*
+    - cairo
     - flex
     - gettext  # [osx]
-    - glib 2.55.*
-    - libffi 3.2.*
-    - pkg-config  # [not win]
+    - glib
+    - libffi
     - python
-    - toolchain
   run:
-    - glib 2.55.*
-    - libffi 3.2.*
+    - glib
+    - libffi
     - python
 
 test:

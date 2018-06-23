@@ -14,14 +14,16 @@ Summary: Middleware for binding GObject-based code to other languages.
 Current build status
 ====================
 
-Linux: [![Circle CI](https://circleci.com/gh/conda-forge/gobject-introspection-feedstock.svg?style=shield)](https://circleci.com/gh/conda-forge/gobject-introspection-feedstock)
-OSX: [![TravisCI](https://travis-ci.org/conda-forge/gobject-introspection-feedstock.svg?branch=master)](https://travis-ci.org/conda-forge/gobject-introspection-feedstock)
-Windows: ![](https://cdn.rawgit.com/conda-forge/conda-smithy/90845bba35bec53edac7a16638aa4d77217a3713/conda_smithy/static/disabled.svg)
+[![Linux](https://img.shields.io/circleci/project/github/conda-forge/gobject-introspection-feedstock/master.svg?label=Linux)](https://circleci.com/gh/conda-forge/gobject-introspection-feedstock)
+[![OSX](https://img.shields.io/travis/conda-forge/gobject-introspection-feedstock/master.svg?label=macOS)](https://travis-ci.org/conda-forge/gobject-introspection-feedstock)
+![Windows disabled](https://img.shields.io/badge/Windows-disabled-lightgrey.svg)
 
 Current release info
 ====================
-Version: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/gobject-introspection/badges/version.svg)](https://anaconda.org/conda-forge/gobject-introspection)
-Downloads: [![Anaconda-Server Badge](https://anaconda.org/conda-forge/gobject-introspection/badges/downloads.svg)](https://anaconda.org/conda-forge/gobject-introspection)
+
+| Name | Downloads | Version | Platforms |
+| --- | --- | --- | --- |
+| [![Conda Recipe](https://img.shields.io/badge/recipe-gobject--introspection-green.svg)](https://anaconda.org/conda-forge/gobject-introspection) | [![Conda Downloads](https://img.shields.io/conda/dn/conda-forge/gobject-introspection.svg)](https://anaconda.org/conda-forge/gobject-introspection) | [![Conda Version](https://img.shields.io/conda/vn/conda-forge/gobject-introspection.svg)](https://anaconda.org/conda-forge/gobject-introspection) | [![Conda Platforms](https://img.shields.io/conda/pn/conda-forge/gobject-introspection.svg)](https://anaconda.org/conda-forge/gobject-introspection) |
 
 Installing gobject-introspection
 ================================
