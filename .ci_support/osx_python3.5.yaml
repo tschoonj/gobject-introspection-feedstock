@@ -4,8 +4,12 @@ c_compiler:
 - toolchain_c
 cairo:
 - '1.14'
+channel_sources:
+- conda-forge,defaults
+channel_targets:
+- conda-forge main
 glib:
-- '2.55'
+- '2.56'
 libffi:
 - '3.2'
 macos_machine:
