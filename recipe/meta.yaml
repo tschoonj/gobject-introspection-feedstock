@@ -13,9 +13,10 @@ source:
   sha256: {{ sha256 }}
   patches:
     - hugepaths.patch
+    - gcc7-rpath-link.patch  # [linux]
 
 build:
-  number: 1000
+  number: 1001
   detect_binary_files_with_prefix: true
   skip: true  # [win]
 
