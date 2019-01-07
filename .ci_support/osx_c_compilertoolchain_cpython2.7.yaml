@@ -5,13 +5,13 @@ build_number_decrement:
 c_compiler:
 - toolchain_c
 cairo:
-- '1.14'
+- '1.16'
 channel_sources:
 - conda-forge,defaults
 channel_targets:
 - conda-forge main
 glib:
-- '2.56'
+- '2.58'
 libffi:
 - '3.2'
 macos_machine:
