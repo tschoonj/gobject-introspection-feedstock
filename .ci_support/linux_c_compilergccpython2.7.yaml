@@ -3,15 +3,15 @@ build_number_decrement:
 c_compiler:
 - gcc
 cairo:
-- '1.14'
+- '1.16'
 channel_sources:
 - conda-forge/label/gcc7,defaults
 channel_targets:
 - conda-forge gcc7
 docker_image:
-- conda/c3i-linux-64
+- condaforge/linux-anvil-comp7
 glib:
-- '2.56'
+- '2.58'
 libffi:
 - '3.2'
 pin_run_as_build:
