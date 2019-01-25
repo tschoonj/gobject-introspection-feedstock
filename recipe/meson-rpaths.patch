@@ -1,0 +1,22 @@
+diff --git a/girepository/meson.build b/girepository/meson.build
+index 6a8c5b5..172be18 100644
+--- a/girepository/meson.build
++++ b/girepository/meson.build
+@@ -134,6 +134,7 @@ girepo_lib = shared_library('girepository-1.0',
+                  gio_dep, girepo_internals_dep],
+   version: '1.0.0',
+   install: true,
++  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+ )
+ 
+ # Copy to builddir for use with giscanner/dumper.py when running uninstalled
+diff --git a/giscanner/meson.build b/giscanner/meson.build
+index 7b4b0d9..e0a5381 100644
+--- a/giscanner/meson.build
++++ b/giscanner/meson.build
+@@ -88,4 +88,5 @@ giscanner_pymod = python.extension_module('_giscanner', ['giscannermodule.c'],
+                  python.dependency()],
+   install: true,
+   install_dir: giscannerdir,
++  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+ )
