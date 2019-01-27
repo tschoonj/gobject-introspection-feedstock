@@ -1,8 +1,10 @@
 {% set name = "gobject-introspection" %}
-{% set major = "1.56" %}
-{% set patch = "1" %}
+{% set major = "1.58" %}
+{% set patch = "2" %}
 {% set version = major ~ "." ~ patch %}
-{% set sha256 = "5b2875ccff99ff7baab63a34b67f8c920def240e178ff50add809e267d9ea24b" %}
+{% set sha256 = "2a5e0f69459af7ca4c41b8f4e19d9c80ddf877834bb0e7fdd420e2495ae2eda8" %}
+{% set posix = 'm2-' if win else '' %}
+{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: {{ name|lower }}
@@ -12,22 +14,25 @@ source:
   url: http://ftp.gnome.org/pub/GNOME/sources/{{ name }}/{{ major }}/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   patches:
-    - hugepaths.patch
+    - windows-python-cmd.patch
+    - meson-rpaths.patch  # [linux]
     - gcc7-rpath-link.patch  # [linux]
 
 build:
-  number: 1002
-  detect_binary_files_with_prefix: true
-  skip: true  # [win]
+  number: 1000
+  skip: true  # [py<35]
 
 requirements:
   build:
-    - pkg-config  # [not win]
+    - {{posix}}bison
+    - {{posix}}flex
+    - ninja
+    - {{posix}}patch
+    - {{native}}pkg-config
     - {{ compiler('c') }}
   host:
-    - bison
+    - meson
     - cairo
-    - flex
     - gettext  # [osx]
     - glib
     - libffi
