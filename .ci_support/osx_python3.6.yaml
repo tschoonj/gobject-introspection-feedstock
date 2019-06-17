@@ -2,6 +2,8 @@ MACOSX_DEPLOYMENT_TARGET:
 - '10.9'
 c_compiler:
 - clang
+c_compiler_version:
+- '4'
 cairo:
 - '1.16'
 channel_sources:
@@ -18,8 +20,6 @@ macos_min_version:
 - '10.9'
 pin_run_as_build:
   cairo:
-    max_pin: x.x
-  glib:
     max_pin: x.x
   libffi:
     max_pin: x.x
