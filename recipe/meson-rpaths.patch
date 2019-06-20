@@ -20,3 +20,27 @@ index 7b4b0d9..e0a5381 100644
    install_dir: giscannerdir,
 +  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
  )
+diff --git a/tools/meson.build b/tools/meson.build
+index 0bc33ba..635e9bf 100644
+--- a/tools/meson.build
++++ b/tools/meson.build
+@@ -44,6 +44,7 @@ gircompiler = executable('g-ir-compiler', 'compiler.c',
+     girepo_dep,
+   ],
+   install: true,
++  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+ )
+ 
+ girgenerate = executable('g-ir-generate', 'generate.c',
+@@ -52,9 +53,11 @@ girgenerate = executable('g-ir-generate', 'generate.c',
+     girepo_dep,
+   ],
+   install: true,
++  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+ )
+ 
+ girinspect = executable('g-ir-inspect', 'g-ir-inspect.c',
+   dependencies: girepo_dep,
+   install: true,
++  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+ )
