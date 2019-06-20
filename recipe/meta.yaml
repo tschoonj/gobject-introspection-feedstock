@@ -19,7 +19,7 @@ source:
     - gcc7-rpath-link.patch  # [linux]
 
 build:
-  number: 1000
+  number: 1001
   skip: true  # [py<35]
 
 requirements:
@@ -46,6 +46,8 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
+    - g-ir-scanner --help
+    - g-ir-compiler --help
 
 about:
   home: https://wiki.gnome.org/action/show/Projects/GObjectIntrospection
