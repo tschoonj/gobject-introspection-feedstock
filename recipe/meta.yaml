@@ -46,8 +46,8 @@ test:
   commands:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
-    - g-ir-scanner --help
-    - g-ir-compiler --help
+    - g-ir-scanner --help  # [not win]
+    - g-ir-compiler --help  # [not win]
 
 about:
   home: https://wiki.gnome.org/action/show/Projects/GObjectIntrospection
