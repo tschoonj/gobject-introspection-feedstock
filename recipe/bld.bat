@@ -13,14 +13,14 @@ cd forgebuild
 
 @REM pkg-config setup
 FOR /F "delims=" %%i IN ('cygpath.exe -m "%LIBRARY_PREFIX%"') DO set "LIBRARY_PREFIX_M=%%i"
-set PKG_CONFIG_PATH=%LIBRARY_PREFIX_M%/lib/pkgconfig
+set PKG_CONFIG_PATH=%LIBRARY_PREFIX_M%/lib/pkgconfig;%LIBRARY_PREFIX_M%/share/pkgconfig
 
 @REM Work around a Windows build failure in Python 3.6. This is unneeded in 3.7.
 @REM See https://www.python.org/dev/peps/pep-0528/ and https://github.com/mesonbuild/meson/issues/4827 .
 set "PYTHONLEGACYWINDOWSSTDIO=1"
 set "PYTHONIOENCODING=UTF-8"
 
-%PYTHON% %PREFIX%\Scripts\meson --buildtype=release --prefix=%LIBRARY_PREFIX_M% --backend=ninja -Dcairo=true -Dpython=%PYTHON% ..
+%PYTHON% %PREFIX%\Scripts\meson --buildtype=release --prefix=%LIBRARY_PREFIX_M% --backend=ninja -Dcairo=true -Dcairo-libname=cairo-gobject.dll -Dpython=%PYTHON% ..
 if errorlevel 1 exit 1
 
 ninja -v
