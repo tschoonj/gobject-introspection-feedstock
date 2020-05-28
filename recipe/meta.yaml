@@ -1,8 +1,8 @@
 {% set name = "gobject-introspection" %}
-{% set major = "1.58" %}
-{% set patch = "2" %}
+{% set major = "1.64" %}
+{% set patch = "1" %}
 {% set version = major ~ "." ~ patch %}
-{% set sha256 = "2a5e0f69459af7ca4c41b8f4e19d9c80ddf877834bb0e7fdd420e2495ae2eda8" %}
+{% set sha256 = "80beae6728c134521926affff9b2e97125749b38d38744dc901f4010ee3e7fa7" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -14,21 +14,21 @@ source:
   url: http://ftp.gnome.org/pub/GNOME/sources/{{ name }}/{{ major }}/{{ name }}-{{ version }}.tar.xz
   sha256: {{ sha256 }}
   patches:
-    - windows-python-cmd.patch
     - meson-rpaths.patch  # [linux]
     - gcc7-rpath-link.patch  # [linux]
+    - test-fix.patch  # [linux]
 
 build:
-  number: 1004
+  number: 0
   skip: true  # [py<35]
 
 requirements:
   build:
-    - {{posix}}bison
-    - {{posix}}flex
+    - {{ posix }}bison
+    - {{ posix }}flex
     - ninja
-    - {{posix}}patch
-    - {{native}}pkg-config
+    - {{ posix }}patch
+    - {{ native }}pkg-config
     - {{ compiler('c') }}
   host:
     - meson
