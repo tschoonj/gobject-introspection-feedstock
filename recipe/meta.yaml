@@ -1,8 +1,5 @@
 {% set name = "gobject-introspection" %}
-{% set major = "1.64" %}
-{% set patch = "1" %}
-{% set version = major ~ "." ~ patch %}
-{% set sha256 = "80beae6728c134521926affff9b2e97125749b38d38744dc901f4010ee3e7fa7" %}
+{% set version = "1.64.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -11,8 +8,8 @@ package:
   version: {{ version }}
 
 source:
-  url: http://ftp.gnome.org/pub/GNOME/sources/{{ name }}/{{ major }}/{{ name }}-{{ version }}.tar.xz
-  sha256: {{ sha256 }}
+  url: https://download.gnome.org/sources/{{ name }}/{{ '.'.join(version.split('.')[:2]) }}/{{ name }}-{{ version }}.tar.xz
+  sha256: 80beae6728c134521926affff9b2e97125749b38d38744dc901f4010ee3e7fa7
   patches:
     - meson-rpaths.patch  # [linux]
     - gcc7-rpath-link.patch  # [linux]
