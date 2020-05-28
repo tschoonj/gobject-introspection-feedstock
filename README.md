@@ -236,4 +236,5 @@ Feedstock Maintainers
 * [@ocefpaf](https://github.com/ocefpaf/)
 * [@pkgw](https://github.com/pkgw/)
 * [@scopatz](https://github.com/scopatz/)
+* [@tschoonj](https://github.com/tschoonj/)
 
