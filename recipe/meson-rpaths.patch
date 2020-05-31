@@ -1,46 +1,54 @@
 diff --git a/girepository/meson.build b/girepository/meson.build
-index 6a8c5b5..172be18 100644
+index 204659fe..c263eb19 100644
 --- a/girepository/meson.build
 +++ b/girepository/meson.build
-@@ -134,6 +134,7 @@ girepo_lib = shared_library('girepository-1.0',
+@@ -181,6 +181,7 @@ girepo_lib = shared_library('girepository-1.0',
                   gio_dep, girepo_internals_dep],
-   version: '1.0.0',
-   install: true,
+   version: lib_version,
+   darwin_versions: lib_osx_version,
 +  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+   install: true,
  )
  
- # Copy to builddir for use with giscanner/dumper.py when running uninstalled
 diff --git a/giscanner/meson.build b/giscanner/meson.build
-index 7b4b0d9..e0a5381 100644
+index a3b06f37..1ec3af36 100644
 --- a/giscanner/meson.build
 +++ b/giscanner/meson.build
-@@ -88,4 +88,5 @@ giscanner_pymod = python.extension_module('_giscanner', ['giscannermodule.c'],
-                  python.dependency()],
+@@ -118,5 +118,6 @@ giscanner_pymod = python.extension_module('_giscanner', ['giscannermodule.c'],
+   dependencies: [glib_dep, gobject_dep, gio_dep, gmodule_dep,
+                  python_ext_dep],
    install: true,
-   install_dir: giscannerdir,
 +  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+   install_dir: giscannerdir,
  )
 diff --git a/tools/meson.build b/tools/meson.build
-index 0bc33ba..635e9bf 100644
+index 103480c4..af160327 100644
 --- a/tools/meson.build
 +++ b/tools/meson.build
-@@ -44,6 +44,7 @@ gircompiler = executable('g-ir-compiler', 'compiler.c',
+@@ -56,6 +56,7 @@ gircompiler = executable('g-ir-compiler', 'compiler.c',
      girepo_dep,
    ],
    install: true,
 +  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+   c_args: custom_c_args,
  )
- 
- girgenerate = executable('g-ir-generate', 'generate.c',
-@@ -52,9 +53,11 @@ girgenerate = executable('g-ir-generate', 'generate.c',
+ meson.override_find_program('g-ir-compiler', gircompiler)
+@@ -66,6 +67,7 @@ girgenerate = executable('g-ir-generate', 'generate.c',
      girepo_dep,
    ],
    install: true,
 +  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+   c_args: custom_c_args,
  )
- 
+ meson.override_find_program('g-ir-generate', girgenerate)
+@@ -73,6 +75,7 @@ meson.override_find_program('g-ir-generate', girgenerate)
  girinspect = executable('g-ir-inspect', 'g-ir-inspect.c',
    dependencies: girepo_dep,
    install: true,
 +  install_rpath: join_paths(get_option('prefix'), get_option('libdir')),
+   c_args: custom_c_args,
  )
+-meson.override_find_program('g-ir-inspect', girinspect)
+\ No newline at end of file
++meson.override_find_program('g-ir-inspect', girinspect)
+

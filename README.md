@@ -3,7 +3,7 @@ About gobject-introspection
 
 Home: https://wiki.gnome.org/action/show/Projects/GObjectIntrospection
 
-Package license: LGPLv2+
+Package license: LGPL-2.0-or-later
 
 Feedstock license: BSD 3-Clause
 
@@ -113,24 +113,24 @@ Current build status
                 </a>
               </td>
             </tr><tr>
-              <td>win_c_compilervs2015python3.6.____cpython</td>
+              <td>win_python3.6.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=379&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gobject-introspection-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2015python3.6.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gobject-introspection-feedstock?branchName=master&jobName=win&configuration=win_python3.6.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_c_compilervs2015python3.7.____cpython</td>
+              <td>win_python3.7.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=379&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gobject-introspection-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2015python3.7.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gobject-introspection-feedstock?branchName=master&jobName=win&configuration=win_python3.7.____cpython" alt="variant">
                 </a>
               </td>
             </tr><tr>
-              <td>win_c_compilervs2015python3.8.____cpython</td>
+              <td>win_python3.8.____cpython</td>
               <td>
                 <a href="https://dev.azure.com/conda-forge/feedstock-builds/_build/latest?definitionId=379&branchName=master">
-                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gobject-introspection-feedstock?branchName=master&jobName=win&configuration=win_c_compilervs2015python3.8.____cpython" alt="variant">
+                  <img src="https://dev.azure.com/conda-forge/feedstock-builds/_apis/build/status/gobject-introspection-feedstock?branchName=master&jobName=win&configuration=win_python3.8.____cpython" alt="variant">
                 </a>
               </td>
             </tr>
@@ -236,4 +236,5 @@ Feedstock Maintainers
 * [@ocefpaf](https://github.com/ocefpaf/)
 * [@pkgw](https://github.com/pkgw/)
 * [@scopatz](https://github.com/scopatz/)
+* [@tschoonj](https://github.com/tschoonj/)
 
