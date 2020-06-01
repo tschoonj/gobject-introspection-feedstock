@@ -20,7 +20,17 @@ set PKG_CONFIG_PATH=%LIBRARY_PREFIX_M%/lib/pkgconfig;%LIBRARY_PREFIX_M%/share/pk
 set "PYTHONLEGACYWINDOWSSTDIO=1"
 set "PYTHONIOENCODING=UTF-8"
 
-%PYTHON% %PREFIX%\Scripts\meson --buildtype=release --prefix=%LIBRARY_PREFIX_M% --backend=ninja -Dcairo=enabled -Dcairo-libname=cairo-gobject.dll -Dpython=%PYTHON% ..
+@REM Pass Python to meson with a mixed-style (forward slash) path. This fixes a bug
+@REM where build prefix replacement would fail with the g-ir-scanner and
+@REM g-ir-annotation-tool Python scripts because the build prefix would appear within
+@REM them having two slash styles (forward and backward slashes). With this fix, the
+@REM Python path inserted at the top of the installed Python scripts will use the same
+@REM forward slash style as with the paths that meson substitutes later in those scripts
+@REM (meson will use forward slash no matter what style of prefix is passed, so have to
+@REM fix the env python path to match).
+FOR /F "delims=" %%i IN ('cygpath.exe -m "%PYTHON%"') DO set "PYTHON_M=%%i"
+
+%PYTHON% %PREFIX%\Scripts\meson --buildtype=release --prefix=%LIBRARY_PREFIX_M% --backend=ninja -Dcairo=enabled -Dcairo-libname=cairo-gobject.dll -Dpython=%PYTHON_M% ..
 if errorlevel 1 exit 1
 
 ninja -v
