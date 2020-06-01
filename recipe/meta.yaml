@@ -16,7 +16,7 @@ source:
     - test-fix.patch  # [linux]
 
 build:
-  number: 0
+  number: 1
   skip: true  # [py<35]
 
 requirements:
@@ -46,7 +46,8 @@ test:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
     - g-ir-scanner --help  # [not win]
-    - g-ir-compiler --help  # [not win]
+    - python "%PREFIX%\\Library\\bin\\g-ir-scanner" --help  # [win]
+    - g-ir-compiler --help
 
     # check that g-ir-scanner can be found through pkg-config (used by downstream builds)
     - test -f `pkg-config --variable=g_ir_scanner --dont-define-prefix gobject-introspection-1.0`  # [unix]
