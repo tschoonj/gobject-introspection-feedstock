@@ -48,6 +48,7 @@ test:
     - SET PYTHONDEBUG=1         # [win]
     - SET PYTHONFAULTHANDLER=1  # [win]
     - '"C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x86\\gflags.exe" /p /enable python.exe'  # [win]
+    - '"C:\\Program Files (x86)\\Windows Kits\\10\\Debuggers\\x86\\cdb.exe" python.exe "%PREFIX%\\Library\\bin\\g-ir-scanner" --help'  # [win]
     - python "%PREFIX%\\Library\\bin\\g-ir-scanner" --help  # [win]
     - g-ir-compiler --help
 
