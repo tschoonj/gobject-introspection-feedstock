@@ -44,6 +44,8 @@ test:
     - conda inspect linkages -p $PREFIX $PKG_NAME  # [not win]
     - conda inspect objects -p $PREFIX $PKG_NAME  # [osx]
     - g-ir-scanner --help  # [not win]
+    - SET PYTHON_VERBOSE=2  # [win]
+    - SET PYTHON_DEBUG=1  # [win]
     - python "%PREFIX%\\Library\\bin\\g-ir-scanner" --help  # [win]
     - g-ir-compiler --help
 
