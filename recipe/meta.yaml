@@ -33,7 +33,6 @@ requirements:
     - libffi
     - python
   run:
-    - glib
     - libffi
     - python
 
