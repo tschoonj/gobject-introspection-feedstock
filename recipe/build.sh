@@ -7,6 +7,8 @@ if [[ "$target_platform" == osx-* ]] ; then
     LDFLAGS=${LDFLAGS//-Wl,-dead_strip_dylibs/}
 fi
 
+export PKG_CONFIG=$BUILD_PREFIX/bin/pkg-config
+
 mkdir forgebuild
 cd forgebuild
 meson ${MESON_ARGS} --buildtype=release --prefix="$PREFIX" --backend=ninja -Dlibdir=lib \
