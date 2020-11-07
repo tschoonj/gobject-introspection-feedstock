@@ -27,6 +27,7 @@ requirements:
     - {{ posix }}patch
     - {{ native }}pkg-config
     - {{ compiler('c') }}
+    - glib                                   # [build_platform != target_platform]
   host:
     - meson
     - cairo
