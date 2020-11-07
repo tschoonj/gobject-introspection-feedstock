@@ -2,17 +2,14 @@
 
 set -ex
 
-if [ $(uname) = Darwin ] ; then
-    LDFLAGS="$LDFLAGS -Wl,-rpath,$PREFIX/lib"
+if [[ "$target_platform" == osx-* ]] ; then
     # dead_strip_dylibs breaks some tests
     LDFLAGS=${LDFLAGS//-Wl,-dead_strip_dylibs/}
-else
-    LDFLAGS="$LDFLAGS -Wl,-rpath-link,$PREFIX/lib"
 fi
 
 mkdir forgebuild
 cd forgebuild
-meson --buildtype=release --prefix="$PREFIX" --backend=ninja -Dlibdir=lib \
+meson ${MESON_ARGS} --buildtype=release --prefix="$PREFIX" --backend=ninja -Dlibdir=lib \
       -Dcairo=enabled -Dpython="$PYTHON" ..
 ninja -v
 ninja test
