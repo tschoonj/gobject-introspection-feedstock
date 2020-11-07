@@ -12,7 +12,7 @@ export PKG_CONFIG=$BUILD_PREFIX/bin/pkg-config
 mkdir forgebuild
 cd forgebuild
 meson ${MESON_ARGS} --buildtype=release --prefix="$PREFIX" --backend=ninja -Dlibdir=lib \
-      -Dcairo=enabled -Dpython="$PYTHON" ..
+      -Dcairo=enabled -Dpython="$BUILD_PREFIX/bin/python" ..
 ninja -v
 ninja test
 ninja install
