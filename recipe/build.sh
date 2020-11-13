@@ -26,8 +26,13 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
     # Unset them as we're ok with builds that are either slow or non-portable
     unset CFLAGS
 
-    meson --buildtype=release --prefix="$BUILD_PREFIX" --backend=ninja -Dlibdir=lib \
-          -Dcairo=enabled -Dpython="$BUILD_PREFIX/bin/python" ..
+    $BUILD_PREFIX/bin/python3 $(which meson) --buildtype=release --prefix="$BUILD_PREFIX" --backend=ninja -Dlibdir=lib \
+          -Dcairo=enabled -Dpython="$BUILD_PREFIX/bin/python3" ..
+
+    # This script would generate the functions.txt and dump.xml and save them
+    # This is loaded in the native build. We assume that the functions exported
+    # by glib are the same for the native and cross builds
+    export GI_CROSS_LAUNCHER=$RECIPE_DIR/save.sh
     ninja
     ninja install
 
@@ -36,6 +41,7 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
     export LDFLAGS=$LDFLAGS_ORIG
     export CFLAGS=$CFLAGS_ORIG
     export PKG_CONFIG_PATH=$PKG_CONFIG_PATH_ORIG
+    export GI_CROSS_LAUNCHER=$RECIPE_DIR/load.sh
 
     popd
     MESON_ARGS="-Dgi_cross_use_prebuilt_gi=True ${MESON_ARGS}"
