@@ -7,17 +7,16 @@ if [[ "$target_platform" == osx-* ]] ; then
     LDFLAGS=${LDFLAGS//-Wl,-dead_strip_dylibs/}
 fi
 
+mkdir -p $PREFIX/libexec
+cp $RECIPE_DIR/load.sh $PREFIX/libexec/gi-cross-launcher-load.sh
+cp $RECIPE_DIR/save.sh $PREFIX/libexec/gi-cross-launcher-save.sh
+
 export PKG_CONFIG=$BUILD_PREFIX/bin/pkg-config
 
 if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
+  (
     mkdir -p build-host
     pushd build-host
-
-    # Store original flags
-    export CC_ORIG=$CC
-    export LDFLAGS_ORIG=$LDFLAGS
-    export CFLAGS_ORIG=$CFLAGS
-    export PKG_CONFIG_PATH_ORIG=$PKG_CONFIG_PATH
 
     export CC=$CC_FOR_BUILD
     export LDFLAGS=${LDFLAGS//$PREFIX/$BUILD_PREFIX}
@@ -32,19 +31,14 @@ if [[ "$CONDA_BUILD_CROSS_COMPILATION" == 1 ]]; then
     # This script would generate the functions.txt and dump.xml and save them
     # This is loaded in the native build. We assume that the functions exported
     # by glib are the same for the native and cross builds
-    export GI_CROSS_LAUNCHER=$RECIPE_DIR/save.sh
+    export GI_CROSS_LAUNCHER=$PREFIX/libexec/gi-cross-launcher-load.sh
     ninja
     ninja install
 
-    # Restore original flags
-    export CC=$CC_ORIG
-    export LDFLAGS=$LDFLAGS_ORIG
-    export CFLAGS=$CFLAGS_ORIG
-    export PKG_CONFIG_PATH=$PKG_CONFIG_PATH_ORIG
-    export GI_CROSS_LAUNCHER=$RECIPE_DIR/load.sh
-
     popd
-    MESON_ARGS="-Dgi_cross_use_prebuilt_gi=True ${MESON_ARGS}"
+  )
+  export GI_CROSS_LAUNCHER=$PREFIX/libexec/gi-cross-launcher-save.sh
+  MESON_ARGS="-Dgi_cross_use_prebuilt_gi=True ${MESON_ARGS}"
 fi
 
 mkdir forgebuild
